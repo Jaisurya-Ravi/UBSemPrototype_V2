@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Colorful Tabbed UI</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Custom CSS -->
+</head>
+<style>
+  /* General Styles */
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f5f5;
+  }
+
+  /* Header Styles */
+  .colorful-header {
+    background: linear-gradient(90deg, #9d0132, #2575fc);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+
+  .logo {
+    width: 60px;
+    height: 60px;
+    border-radius: 34px;
+  }
+
+  /* Colorful Tabs */
+  .colorful-tabs .nav-link {
+    font-weight: 500;
+    border: none;
+    border-bottom: 3px solid transparent;
+    background: none;
+    padding: 10px 15px;
+    transition: all 0.3s ease-in-out;
+    color: #6c757d;
+  }
+
+  .colorful-tabs .nav-link i {
+    font-size: 18px;
+  }
+
+  .colorful-tabs .nav-link:hover {
+    color: #0d6efd;
+  }
+
+  .colorful-tabs .nav-link.active {
+    color: #6c757d;
+    ;
+    /* background: linear-gradient(90deg, #6a11cb, #2575fc); */
+    border-bottom: 3px solid #2575fc;
+    border-radius: 4px 4px 0 0;
+  }
+
+  /* Tab Content */
+  .colorful-tab-content {
+    border: 2px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Colorful Text */
+  .text-primary {
+    color: #0d6efd !important;
+  }
+
+  .sub-text {
+    font-size: 0.85rem;
+    /* Smaller font size */
+    color: #f8f9fa;
+    /* Light color for the sub-text */
+  }
+
+  .text-success {
+    color: #28a745 !important;
+  }
+
+  .text-warning {
+    color: #ffc107 !important;
+  }
+
+  .text-danger {
+    color: #dc3545 !important;
+  }
+
+
+  .table-container {
+    margin-top: 20px;
+  }
+
+  .table tbody tr.child-row {
+    display: table-row;
+  }
+
+  .table tbody tr.child-row.hidden {
+    display: none;
+  }
+
+  .expand-icon {
+    cursor: pointer;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  /* Remove the default blue background from the dropdown when focused */
+  #targetType:focus {
+    outline: none;
+    box-shadow: none;
+    background-color: transparent;
+  }
+
+
+  .state-achievement {
+    font-size: 0.9rem;
+    color: #555;
+  }
+
+  /* Line style */
+  hr.my-3 {
+    border-top: 2px solid #ddd;
+    /* Customize thickness and color */
+  }
+
+  /* Label styling */
+  .form-label {
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  .highlighted-percentage {
+    color: #28a745;
+    /* Customize with your preferred color */
+    font-weight: bold;
+  }
+
+
+
+
+  /* Container for the circular progress bar */
+  .circular-progress {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: conic-gradient(#ddd 0%, #ddd 100%);
+    /* Default empty progress */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: background 0.3s ease;
+    /* Smooth background animation */
+  }
+
+  /* Inner Circle for Displaying Percentage */
+  .circular-progress .inner-circle {
+    width: 80%;
+    height: 80%;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    /* Overlay on top of progress bar */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+  }
+
+  /* Optional: Styling for the progress bars' container */
+  .progress-bars-container {
+    margin-top: 20px;
+  }
+
+
+
+  /* Headings for each progress bar */
+  .progress-bars-container h6 {
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: 16px;
+    color: #333;
+  }
+
+  /* Section Title */
+  .progress-bars-container h5 {
+    font-size: 18px;
+    font-weight: bold;
+    color: #007bff;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+
+
+
+
+  /* Reduce the width of input fields */
+  .form-control {
+    width: 110px;
+    /* Adjust the width */
+    padding: 2px;
+    /* Add spacing for better usability */
+    font-size: 12px;
+    /* Ensure consistent font size */
+  }
+
+  /* Remove blue highlight on focus */
+  .form-control:focus {
+    outline: none;
+    box-shadow: none;
+    border-color: #ccc;
+    /* Neutral border color */
+  }
+
+
+
+  /* Add responsiveness for smaller screens */
+  @media (max-width: 768px) {
+    .col-md-6 {
+      flex: 100%;
+      /* Stack tables vertically on smaller screens */
+      max-width: 100%;
+      /* Full width */
+    }
+  }
+
+
+  /* Align the total in the footer */
+  /* General alignment */
+  .text-end {
+    text-align: right;
+  }
+
+  .fw-bold {
+    font-weight: bold;
+  }
+
+  /* Colors for totals */
+  .total-main {
+    color: #28a745;
+    /* Blue for the main table total */
+  }
+
+  .total-secondary {
+    color: #007bff;
+    /* Green for the secondary table total */
+  }
+
+  /* Ensures totals are vertically aligned */
+  tfoot td {
+    vertical-align: middle;
+  }
+</style>
+
+<body>
+  <!-- Header -->
+  <header class="py-3 colorful-header">
+    <div class="container d-flex justify-content-between align-items-center">
+
+      <!-- Logo and Title -->
+      <div class="d-flex align-items-center">
+        <img src="./ub-united-breweries-limited-seeklogo.png" alt="Company Logo" class="logo me-2">
+        <div>
+          <h1 class="h5 mb-0 text-light">Welcome, Administrator</h1>
+          <div class="sub-text text-light small">Sales Executive Matrix</div>
+        </div>
+      </div>
+
+      <!-- Last Logged Info -->
+      <div class="text-light small d-flex align-items-center">
+        <i class="fas fa-clock me-2"></i>Last Updated on: <span id="lastLogged" class="fw-bold">&nbsp20 Nov
+          2024</span>
+      </div>
+    </div>
+  </header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- Tab Navigation -->
+  <div class="container mt-4">
+    <ul class="nav nav-tabs colorful-tabs" id="tabs" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active d-flex align-items-center" id="messages-tab" data-bs-toggle="tab"
+          data-bs-target="#messages" type="button" role="tab" aria-controls="messages" aria-selected="true">
+          <i class="fas fa-chart-line text-primary me-2"></i>&nbspMatrix(FL)
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link d-flex align-items-center" id="groups-tab" data-bs-toggle="tab" data-bs-target="#groups"
+          type="button" role="tab" aria-controls="groups" aria-selected="false">
+          <i class="fas fa-chart-bar text-success me-2"></i>&nbspMatrix(SUP)
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link d-flex align-items-center" id="notifications-tab" data-bs-toggle="tab"
+          data-bs-target="#notifications" type="button" role="tab" aria-controls="notifications" aria-selected="false">
+          <i class="fas fa-chart-pie text-warning me-2"></i>&nbspMatrix Qualifier(Pride)
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link d-flex align-items-center" id="mentions-tab" data-bs-toggle="tab"
+          data-bs-target="#mentions" type="button" role="tab" aria-controls="mentions" aria-selected="false">
+          <i class="fas fa-chart-area text-danger me-2"></i>&nbspMatrix Qualifier(UB)
+        </button>
+      </li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Tab Content-->
+    <div class="tab-content mt-3 colorful-tab-content">
+
+      <!-- Tab Content Matrix (FL)-->
+      <div class="tab-pane fade show active" id="messages" role="tabpanel" aria-labelledby="messages-tab">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <!-- Target Type Label and Dropdown -->
+          <div class="d-flex align-items-center">
+            <label for="targetType" class="form-label mb-0 me-2">Target Type:</label>
+            <select id="targetType" class="form-select w-auto">
+              <option value="1">Target Type 1</option>
+              <option value="2">Target Type 2</option>
+              <option value="3">Target Type 3</option>
+            </select>
+          </div>
+
+          <!-- State Achievement Info with Icon -->
+          <div class="d-flex align-items-center">
+            <i class="fas fa-trophy text-warning me-2"></i>
+            <div class="text-end">
+              State achievement as on <span class="date">14/11/2024</span> - <span
+                class="percentage highlighted-percentage">16.45%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Line Below the Dropdown and State Achievement -->
+        <hr class="my-3">
+
+        <table class="table colorful-table">
+          <thead>
+            <tr>
+              <th>Target Type</th>
+              <th>Targets</th>
+              <th>Actuals</th>
+              <th>Achievement</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <!-- Row Without Expand/Collapse -->
+            <tr>
+              <td><i class="fas fa-shopping-cart text-success me-2"></i>&nbspTotal Volume</td>
+              <td>8,778</td>
+              <td>38</td>
+              <td class="text-success fw-bold">98%</td>
+            </tr>
+            <tr>
+              <td><i class="fas fa-snowflake text-primary me-2"></i>&nbspCooler Share</td>
+              <td>8,778</td>
+              <td>38</td>
+              <td class="text-success fw-bold">98%</td>
+            </tr>
+
+            <!-- Parent Row -->
+            <tr class="parent-row">
+              <td>
+                <i class="fas fa-gem text-warning me-2"></i>&nbspPremium Brand Volumes
+                <i class="fas fa-chevron-down expand-icon text-primary" data-bs-toggle="child-rows"></i>
+              </td>
+              <td>48,455</td>
+              <td>7,478</td>
+              <td class="text-success fw-bold">78%</td>
+            </tr>
+            <!-- Child Rows -->
+            <tr class="child-row">
+              <td>&nbsp;&nbsp;&nbsp;<i class="fas fa-caret-right text-info"></i>&nbspAmstel</td>
+              <td>8,000</td>
+              <td>1,000</td>
+              <td class="text-success fw-bold">95%</td>
+            </tr>
+            <tr class="child-row">
+              <td>&nbsp;&nbsp;&nbsp;<i class="fas fa-caret-right text-info"></i>&nbspHeineken</td>
+              <td>4,654</td>
+              <td>456</td>
+              <td class="text-success fw-bold">56%</td>
+            </tr>
+            <tr class="child-row">
+              <td>&nbsp;&nbsp;&nbsp;<i class="fas fa-caret-right text-info"></i>&nbspHeineken Silver</td>
+              <td>4,565</td>
+              <td>345</td>
+              <td class="text-success fw-bold">23%</td>
+            </tr>
+            <tr class="child-row">
+              <td>&nbsp;&nbsp;&nbsp;<i class="fas fa-caret-right text-info"></i>&nbspKF Ultra Max</td>
+              <td>2,343</td>
+              <td>23</td>
+              <td class="text-success fw-bold">56%</td>
+            </tr>
+            <tr class="child-row">
+              <td>&nbsp;&nbsp;&nbsp;<i class="fas fa-caret-right text-info"></i>&nbspKingfisher Ultra</td>
+              <td>4,343</td>
+              <td>345</td>
+              <td class="text-success fw-bold">23%</td>
+            </tr>
+
+            <!-- Parent Row -->
+            <tr class="parent-row">
+              <td>
+                <i class="fas fa-crown text-danger me-2"></i>&nbspState Priority
+                <i class="fas fa-chevron-down expand-icon text-primary" data-bs-toggle="child-rows"></i>
+              </td>
+              <td>2,344</td>
+              <td>56,565</td>
+              <td class="text-success fw-bold">34%</td>
+            </tr>
+            <!-- Child Rows -->
+            <tr class="child-row">
+              <td>&nbsp;&nbsp;&nbsp;<i class="fas fa-caret-right text-info"></i>&nbspAmstel</td>
+              <td>5,646</td>
+              <td>4,564</td>
+              <td class="text-success fw-bold">43%</td>
+            </tr>
+            <tr class="child-row">
+              <td>&nbsp;&nbsp;&nbsp;<i class="fas fa-caret-right text-info"></i>&nbspHeineken</td>
+              <td>5,676</td>
+              <td>67</td>
+              <td class="text-success fw-bold">75%</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <!-- Tab Content Matrix (SUP)-->
+      <div class="tab-pane fade" id="groups" role="tabpanel" aria-labelledby="groups-tab">
+
+        <!-- Tab Content Matrix (FL)-->
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <!-- Target Type Label and Dropdown -->
+          <div class="d-flex align-items-center">
+            <label for="targetType" class="form-label mb-0 me-2">User:</label>
+            <select id="targetType" class="form-select w-auto">
+              <option value="1">User 1</option>
+              <option value="2">User 2</option>
+              <option value="3">User 3</option>
+            </select>
+          </div>
+
+          <!-- State Achievement Info with Icon -->
+          <div class="d-flex align-items-center">
+            <i class="fas fa-trophy text-warning me-2"></i>
+            <div class="text-end">
+              State achievement as on <span class="date">14/11/2024</span> - <span
+                class="percentage highlighted-percentage">34.45%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Line Below the Dropdown and State Achievement -->
+        <hr class="my-3">
+
+        <table class="table colorful-table">
+          <thead>
+            <tr>
+              <th>Target Type</th>
+              <th>Targets</th>
+              <th>Actuals</th>
+              <th>Achievement</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <!-- Row Without Expand/Collapse -->
+            <tr>
+              <td><i class="fas fa-shopping-cart text-success me-2"></i>&nbspTotal Volume</td>
+              <td>345</td>
+              <td>3,345</td>
+              <td class="text-success fw-bold">45%</td>
+            </tr>
+
+            <tr>
+              <td><i class="fas fa-snowflake text-primary me-2"></i>&nbspCooler Share</td>
+              <td>35,435</td>
+              <td>345</td>
+              <td class="text-success fw-bold">57%</td>
+            </tr>
+
+            <!-- Parent Row -->
+            <tr class="parent-row">
+              <td>
+                <i class="fas fa-gem text-warning me-2"></i>&nbspPremium Brand Volumes
+                <i class="fas fa-chevron-down expand-icon text-primary" data-bs-toggle="child-rows"></i>
+              </td>
+              <td>48,455</td>
+              <td>7,478</td>
+              <td class="text-success fw-bold">78%</td>
+            </tr>
+            <!-- Child Rows -->
+            <tr class="child-row">
+              <td>&nbsp;&nbsp;&nbsp;<i class="fas fa-caret-right text-info"></i>&nbspAmstel</td>
+              <td>8,000</td>
+              <td>1,000</td>
+              <td class="text-success fw-bold">95%</td>
+            </tr>
+            <tr class="child-row">
+              <td>&nbsp;&nbsp;&nbsp;<i class="fas fa-caret-right text-info"></i>&nbspHeineken</td>
+              <td>4,343</td>
+              <td>345</td>
+              <td class="text-success fw-bold">45%</td>
+            </tr>
+            <tr class="child-row">
+              <td>&nbsp;&nbsp;&nbsp;<i class="fas fa-caret-right text-info"></i>&nbspHeineken Silver</td>
+              <td>7,000</td>
+              <td>900</td>
+              <td class="text-success fw-bold">60%</td>
+            </tr>
+            <tr class="child-row">
+              <td>&nbsp;&nbsp;&nbsp;<i class="fas fa-caret-right text-info"></i>&nbspKF Ultra Max</td>
+              <td>4,545</td>
+              <td>87</td>
+              <td class="text-success fw-bold">76%</td>
+            </tr>
+            <tr class="child-row">
+              <td>&nbsp;&nbsp;&nbsp;<i class="fas fa-caret-right text-info"></i>&nbspKingfisher Ultra</td>
+              <td>3,243</td>
+              <td>67</td>
+              <td class="text-success fw-bold">56%</td>
+            </tr>
+
+            <!-- Parent Row -->
+            <tr class="parent-row">
+              <td>
+                <i class="fas fa-crown text-danger me-2"></i>&nbspState Priority
+                <i class="fas fa-chevron-down expand-icon text-primary" data-bs-toggle="child-rows"></i>
+              </td>
+              <td>3,434</td>
+              <td>677</td>
+              <td class="text-success fw-bold">45%</td>
+            </tr>
+            <!-- Child Rows -->
+            <tr class="child-row">
+              <td>&nbsp;&nbsp;&nbsp;<i class="fas fa-caret-right text-info"></i>&nbspAmstel</td>
+              <td>5,676</td>
+              <td>343</td>
+              <td class="text-success fw-bold">34%</td>
+            </tr>
+            <tr class="child-row">
+              <td>&nbsp;&nbsp;&nbsp;<i class="fas fa-caret-right text-info"></i>&nbspHeineken</td>
+              <td>4,545</td>
+              <td>45</td>
+              <td class="text-success fw-bold">78%</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <!-- Tab Content Matrix Qualifier (Pride) -->
+      <div class="tab-pane fade" id="notifications" role="tabpanel" aria-labelledby="notifications-tab">
+        <div class="row">
+          <div class="col-md-6">
+            <table class="table colorful-table" id="mainTable">
+              <thead>
+                <tr>
+                  <th>Target Type</th>
+                  <th>Targets</th>
+                  <th>Actuals</th>
+                  <th>Achievement</th>
+                  <th>Est.Payout</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><i class="fas fa-shopping-cart text-success me-2"></i>&nbspTotal Volume</td>
+                  <td>3,534</td>
+                  <td>6,767</td>
+                  <td class="text-success fw-bold">45%</td>
+                  <td>3,252</td>
+                </tr>
+                <tr>
+                  <td><i class="fas fa-snowflake text-primary me-2"></i>&nbspCooler Share</td>
+                  <td>5,656</td>
+                  <td>456</td>
+                  <td class="text-success fw-bold">34%</td>
+                  <td>345</td>
+                </tr>
+                <tr>
+                  <td><i class="fas fa-store text-warning me-2"></i>&nbspSKU Per Outlet</td>
+                  <td>35,435</td>
+                  <td>345</td>
+                  <td class="text-success fw-bold">57%</td>
+                  <td>47</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="4" class="text-end fw-bold">Current Est.Payout:</td>
+                  <td id="mainTableTotal" class="fw-bold total-main">0</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+
+          <!-- Secondary Table -->
+          <div class="col-md-6">
+            <table class="table colorful-table" id="secondaryTable">
+              <thead>
+                <tr>
+                  <th>Your MTD Est</th>
+                  <th>Achievement</th>
+                  <th>Est.Payout</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><input type="number" class="form-control" placeholder=" Enter Actuals"></td>
+                  <td class="text-primary fw-bold">45%</td>
+                  <td>1,234</td>
+                </tr>
+                <tr>
+                  <td><input type="number" class="form-control" placeholder=" Enter Actuals"></td>
+                  <td class="text-primary fw-bold">34%</td>
+                  <td>680</td>
+                </tr>
+                <tr>
+                  <td><input type="number" class="form-control" placeholder=" Enter Actuals"></td>
+                  <td class="text-primary fw-bold">57%</td>
+                  <td>1,089</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="2" class="text-end fw-bold">Est.Payout:</td>
+                  <td id="secondaryTableTotal" class="fw-bold total-secondary">0</td>
+                </tr>
+              </tfoot>
+            </table>
+
+          </div>
+        </div>
+
+        <div class="progress-bars-container mt-4">
+          <h5 class="text-center mb-3">Progress Overview</h5>
+          <div class="d-flex justify-content-center gap-5">
+            <!-- Outlets Progress Bar -->
+            <div class="text-center">
+              <h6>Outlets</h6>
+              <div class="circular-progress" id="outletsProgress">
+                <div class="inner-circle">
+                  <span id="outletsPercentage">0%</span> <!-- Percentage text -->
+                </div>
+              </div>
+            </div>
+
+            <!-- Visits Progress Bar -->
+            <div class="text-center">
+              <h6>Visits</h6>
+              <div class="circular-progress" id="visitsProgress">
+                <div class="inner-circle">
+                  <span id="visitsPercentage">0%</span> <!-- Percentage text -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <!-- Tab Content Matrix Qualifier (UB) -->
+      <div class="tab-pane fade" id="mentions" role="tabpanel" aria-labelledby="mentions-tab">
+        <div class="row">
+          <div class="col-md-6">
+            <table class="table colorful-table" id="mainTableUB">
+              <thead>
+                <tr>
+                  <th>Target Type</th>
+                  <th>Targets</th>
+                  <th>Actuals</th>
+                  <th>Achievement</th>
+                  <th>Est.Payout%</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><i class="fas fa-shopping-cart text-success me-2"></i>&nbspTotal Volume</td>
+                  <td>3,534</td>
+                  <td>6,767</td>
+                  <td class="text-success fw-bold">45%</td>
+                  <td id="totalEstPayout1">40%</td>
+                </tr>
+                <tr>
+                  <td><i class="fas fa-snowflake text-primary me-2"></i>&nbspCooler Share</td>
+                  <td>5,656</td>
+                  <td>456</td>
+                  <td class="text-success fw-bold">34%</td>
+                  <td id="totalEstPayout2">25%</td>
+                </tr>
+                <tr>
+                  <td><i class="fas fa-store text-warning me-2"></i>&nbspSKU Per Outlet</td>
+                  <td>35,435</td>
+                  <td>345</td>
+                  <td class="text-success fw-bold">57%</td>
+                  <td id="totalEstPayout3">65%</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="4" class="text-end fw-bold">Total Est.Payout(%):</td>
+                  <td id="mainTableTotalUB" class="fw-bold total-main">0</td>
+                </tr>
+
+
+                <tr>
+                  <td colspan="4" class="text-end">
+                    <!-- SIP CTC Field and Caption -->
+                    <div class="d-inline-block mr-3">
+                      <span class="fw-bold">SIP CTC:</span>
+                      <input type="number" id="sipCTCInput" class="form-control d-inline-block"
+                        placeholder="Enter Amount" style="width: 150px;">
+                    </div>
+
+                    <!-- Current Est.Payout(₹) Field and Caption -->
+                    <div class="d-inline-block">
+                      <span class="fw-bold">Current Est.Payout(₹):</span>
+                    </div>
+                  </td>
+                  <td id="mainTableTotalUB1" class="fw-bold total-main">0</td>
+                </tr>
+
+
+              </tfoot>
+            </table>
+          </div>
+
+          <!-- Secondary Table -->
+          <div class="col-md-6">
+            <table class="table colorful-table" id="secondaryTableUB">
+              <thead>
+                <tr>
+                  <th>Your MTD Est</th>
+                  <th>Achievement</th>
+                  <th>SIP Payout Parameter</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><input type="number" class="form-control" placeholder=" Enter Actuals"></td>
+                  <td class="text-primary fw-bold">45%</td>
+                  <td id="totalEstPayout4">60%</td>
+                </tr>
+                <tr>
+                  <td><input type="number" class="form-control" placeholder=" Enter Actuals"></td>
+                  <td class="text-primary fw-bold">34%</td>
+                  <td id="totalEstPayout5">20%</td>
+                </tr>
+                <tr>
+                  <td><input type="number" class="form-control" placeholder=" Enter Actuals"></td>
+                  <td class="text-primary fw-bold">57%</td>
+                  <td id="totalEstPayout6">65%</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="2" class="text-end fw-bold">Est.Payout(%):</td>
+                  <td id="secondaryTableTotalUB" class="fw-bold total-secondary">0</td>
+                </tr>
+                <tr>
+                  <td colspan="2" class="text-end fw-bold">Est.Payout(₹):</td>
+                  <td id="secondaryTableTotalUB1" class="fw-bold total-secondary">0</td>
+                </tr>
+              </tfoot>
+            </table>
+
+          </div>
+        </div>
+
+        <div class="progress-bars-container mt-4">
+          <h5 class="text-center mb-3">Progress Overview</h5>
+          <div class="d-flex justify-content-center gap-5">
+            <!-- Outlets Progress Bar -->
+            <div class="text-center">
+              <h6>Outlets</h6>
+              <div class="circular-progress" id="outletsProgressUB">
+                <div class="inner-circle">
+                  <span id="outletsPercentageUB">0%</span> <!-- Percentage text -->
+                </div>
+              </div>
+            </div>
+
+            <!-- Visits Progress Bar -->
+            <div class="text-center">
+              <h6>Visits</h6>
+              <div class="circular-progress" id="visitsProgressUB">
+                <div class="inner-circle">
+                  <span id="visitsPercentageUB">0%</span> <!-- Percentage text -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+
+
+
+
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    /* Expand collapase */
+    document.addEventListener('DOMContentLoaded', () => {
+      const expandIcons = document.querySelectorAll('.expand-icon');
+
+      expandIcons.forEach(icon => {
+        icon.addEventListener('click', (event) => {
+          const iconClicked = event.target;  // The clicked icon
+          const parentRow = iconClicked.closest('.parent-row'); // Get the parent row
+          const childRows = [];
+
+          // Loop through the next siblings to get child rows (stopping at the next parent row)
+          let sibling = parentRow.nextElementSibling;
+          while (sibling && !sibling.classList.contains('parent-row')) {
+            if (sibling.classList.contains('child-row')) {
+              childRows.push(sibling);  // Collect child rows
+            }
+            sibling = sibling.nextElementSibling; // Move to next sibling
+          }
+
+          // Toggle child rows visibility
+          if (iconClicked.classList.contains('fa-chevron-down')) {
+            childRows.forEach(row => row.classList.add('hidden'));  // Hide the child rows
+            iconClicked.classList.replace('fa-chevron-down', 'fa-chevron-right');  // Change icon to right
+          } else {
+            childRows.forEach(row => row.classList.remove('hidden'));  // Show the child rows
+            iconClicked.classList.replace('fa-chevron-right', 'fa-chevron-down');  // Change icon to down
+          }
+        });
+      });
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+    /* Progress Bar Pride */
+    document.addEventListener('DOMContentLoaded', () => {
+      const notificationsTab = document.getElementById('notifications-tab');
+
+      // Add click listener to trigger animation on Notifications tab
+      notificationsTab.addEventListener('click', () => {
+        // Animate progress bars
+        updateProgressBar('outletsProgress', 'outletsPercentage', 75); // 75% for Outlets
+        updateProgressBar('visitsProgress', 'visitsPercentage', 100);  // 50% for Visits
+      });
+
+      function updateProgressBar(progressBarId, percentageId, target) {
+        let progress = 0; // Initialize progress to 0
+        const progressBar = document.getElementById(progressBarId); // Progress bar element
+        const percentageText = document.getElementById(percentageId); // Percentage text element
+
+        // Animate progress using setInterval
+        const interval = setInterval(() => {
+          if (progress >= target) {
+            clearInterval(interval); // Stop animation when target is reached
+          } else {
+            progress++; // Increment progress
+            const progressValue = `${progress}%`;
+
+            // Update the circular progress bar with conic-gradient
+            progressBar.style.background = `conic-gradient(#4caf50 0% ${progressValue}, #ddd ${progressValue} 100%)`;
+
+            // Update the text inside the inner circle
+            percentageText.textContent = progressValue;
+          }
+        }, 20); // Animation speed
+      }
+    });
+
+
+
+
+    /* Total Calculation Pride */
+    document.addEventListener('DOMContentLoaded', () => {
+      function calculateTableTotal(tableId, totalSpanId) {
+        const table = document.getElementById(tableId);
+        const payoutCells = table.querySelectorAll('tbody tr td:last-child'); // Target the last column in each row
+        const totalSpan = document.getElementById(totalSpanId);
+
+        let totalPayout = 0;
+
+        payoutCells.forEach(cell => {
+          // Remove commas and trim spaces before parsing as a float
+          const value = parseFloat(cell.textContent.replace(/,/g, '').trim());
+          totalPayout += !isNaN(value) ? value : 0; // Add value if it's a number
+        });
+
+        // Display the total formatted with commas
+        totalSpan.textContent = totalPayout.toLocaleString();
+      }
+
+      // Calculate totals for the main and secondary tables
+      calculateTableTotal('mainTable', 'mainTableTotal');
+      calculateTableTotal('secondaryTable', 'secondaryTableTotal');
+    });
+
+
+
+
+
+
+
+    /* Percentage Total Calculation UB */
+    document.addEventListener('DOMContentLoaded', () => {
+      /**
+       * Calculate the total percentage for a specific column in a table.
+       * @param {string} tableId - The ID of the table.
+       * @param {number} columnIndex - The column index (starting from 1) to sum.
+       * @param {string} totalSpanId - The ID of the span to display the total.
+       */
+      function calculateTableTotalPercentage(tableId, columnIndex, totalSpanId) {
+        const table = document.getElementById(tableId);
+        const percentageCells = table.querySelectorAll(`tbody tr td:nth-child(${columnIndex})`);
+        const totalSpan = document.getElementById(totalSpanId);
+
+        let totalPercentage = 0;
+
+        percentageCells.forEach(cell => {
+          // Remove the '%' symbol, trim whitespace, and parse as float
+          const value = parseFloat(cell.textContent.replace('%', '').trim());
+          if (!isNaN(value)) {
+            totalPercentage += value; // Add valid percentage values
+          }
+        });
+
+        // Display the total percentage
+        totalSpan.textContent = `${totalPercentage.toFixed(2)}%`; // Format to 2 decimal places
+      }
+
+      // Calculate totals for the main and secondary tables
+      calculateTableTotalPercentage('mainTableUB', 5, 'mainTableTotalUB'); // 5th column in main table
+      calculateTableTotalPercentage('secondaryTableUB', 3, 'secondaryTableTotalUB'); // 3rd column in secondary table
+    });
+
+
+
+
+
+
+
+
+    /* Function to calculate Current Est.Payout(₹) and Est.Payout(₹): in the main table and Secondary Tabel*/
+    /* main table */
+    function calculateMainTablePayout() {
+      const totalPayout1 = parseFloat(document.getElementById('totalEstPayout1').textContent) || 0;
+      const totalPayout2 = parseFloat(document.getElementById('totalEstPayout2').textContent) || 0;
+      const totalPayout3 = parseFloat(document.getElementById('totalEstPayout3').textContent) || 0;
+
+      // Calculate the total Est.Payout%
+      const totalEstPayout = totalPayout1 + totalPayout2 + totalPayout3;
+      document.getElementById('mainTableTotalUB').textContent = totalEstPayout + "%";
+
+      // Get SIP CTC from the input field
+      const sipCTC = parseFloat(document.getElementById('sipCTCInput').value) || 0;
+
+      // Calculate the Current Est.Payout(₹)
+      const payoutInRupees = (totalEstPayout / 100) * sipCTC;
+      document.getElementById('mainTableTotalUB1').textContent = payoutInRupees.toFixed(2);
+    }
+
+    /* Secondary table */
+    function calculateSecondaryTablePayout() {
+      const totalPayout1 = parseFloat(document.getElementById('totalEstPayout4').textContent) || 0;
+      const totalPayout2 = parseFloat(document.getElementById('totalEstPayout5').textContent) || 0;
+      const totalPayout3 = parseFloat(document.getElementById('totalEstPayout6').textContent) || 0;
+
+      // Calculate the total Est.Payout%
+      const totalEstPayout = totalPayout1 + totalPayout2 + totalPayout3;
+      document.getElementById('secondaryTableTotalUB').textContent = totalEstPayout + "%";
+
+      // Get SIP CTC from the input field
+      const sipCTC = parseFloat(document.getElementById('sipCTCInput').value) || 0;
+
+      // Calculate the Current Est.Payout(₹)
+      const payoutInRupees = (totalEstPayout / 100) * sipCTC;
+      document.getElementById('secondaryTableTotalUB1').textContent = payoutInRupees.toFixed(2);
+    }
+
+    // Event listeners for calculating Est.Payouts when input changes
+    document.getElementById('sipCTCInput').addEventListener('input', () => {
+      calculateMainTablePayout();
+      calculateSecondaryTablePayout();
+    });
+
+    document.querySelectorAll('#secondaryTableUB input').forEach(input => {
+      input.addEventListener('input', () => {
+        calculateSecondaryTablePayout();
+      });
+    });
+
+    // Initial calculation on page load
+    calculateMainTablePayout();
+    calculateSecondaryTablePayout();
+
+
+
+
+
+
+
+    /* Progress Bar UB */
+    document.addEventListener('DOMContentLoaded', () => {
+      const notificationsTab = document.getElementById('mentions-tab');
+
+      // Add click listener to trigger animation on Notifications tab
+      notificationsTab.addEventListener('click', () => {
+        // Animate progress bars
+        updateProgressBar('outletsProgressUB', 'outletsPercentageUB', 100); // 75% for Outlets
+        updateProgressBar('visitsProgressUB', 'visitsPercentageUB', 89);  // 50% for Visits
+      });
+
+      function updateProgressBar(progressBarId, percentageId, target) {
+        let progress = 0; // Initialize progress to 0
+        const progressBar = document.getElementById(progressBarId); // Progress bar element
+        const percentageText = document.getElementById(percentageId); // Percentage text element
+
+        // Animate progress using setInterval
+        const interval = setInterval(() => {
+          if (progress >= target) {
+            clearInterval(interval); // Stop animation when target is reached
+          } else {
+            progress++; // Increment progress
+            const progressValue = `${progress}%`;
+
+            // Update the circular progress bar with conic-gradient
+            progressBar.style.background = `conic-gradient(#4caf50 0% ${progressValue}, #ddd ${progressValue} 100%)`;
+
+            // Update the text inside the inner circle
+            percentageText.textContent = progressValue;
+          }
+        }, 20); // Animation speed
+      }
+    });
+
+
+
+
+
+
+
+  </script>
+
+
+</body>
+
+</html>
