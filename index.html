@@ -266,6 +266,12 @@
   tfoot td {
     vertical-align: middle;
   }
+
+
+  
+
+
+
 </style>
 
 <body>
@@ -751,21 +757,21 @@
               <tbody>
                 <tr>
                   <td><i class="fas fa-shopping-cart text-success me-2"></i>&nbspTotal Volume</td>
-                  <td>3,534</td>
+                  <td>20,000</td>
                   <td>6,767</td>
                   <td class="text-success fw-bold">45%</td>
                   <td>3,252</td>
                 </tr>
                 <tr>
                   <td><i class="fas fa-snowflake text-primary me-2"></i>&nbspCooler Share</td>
-                  <td>5,656</td>
+                  <td>85</td>
                   <td>456</td>
                   <td class="text-success fw-bold">34%</td>
                   <td>345</td>
                 </tr>
                 <tr>
                   <td><i class="fas fa-store text-warning me-2"></i>&nbspSKU Per Outlet</td>
-                  <td>35,435</td>
+                  <td>16</td>
                   <td>345</td>
                   <td class="text-success fw-bold">57%</td>
                   <td>47</td>
@@ -793,17 +799,17 @@
               <tbody>
                 <tr>
                   <td><input type="number" class="form-control" placeholder=" Enter Actuals"></td>
-                  <td class="text-primary fw-bold">45%</td>
+                  <td class="text-primary fw-bold">0</td>
                   <td>1,234</td>
                 </tr>
                 <tr>
                   <td><input type="number" class="form-control" placeholder=" Enter Actuals"></td>
-                  <td class="text-primary fw-bold">34%</td>
+                  <td class="text-primary fw-bold">0</td>
                   <td>680</td>
                 </tr>
                 <tr>
                   <td><input type="number" class="form-control" placeholder=" Enter Actuals"></td>
-                  <td class="text-primary fw-bold">57%</td>
+                  <td class="text-primary fw-bold">0</td>
                   <td>1,089</td>
                 </tr>
               </tbody>
@@ -907,21 +913,21 @@
               <tbody>
                 <tr>
                   <td><i class="fas fa-shopping-cart text-success me-2"></i>&nbspTotal Volume</td>
-                  <td>3,534</td>
+                  <td>20,000</td>
                   <td>6,767</td>
                   <td class="text-success fw-bold">45%</td>
                   <td id="totalEstPayout1">40%</td>
                 </tr>
                 <tr>
                   <td><i class="fas fa-snowflake text-primary me-2"></i>&nbspCooler Share</td>
-                  <td>5,656</td>
+                  <td>85</td>
                   <td>456</td>
                   <td class="text-success fw-bold">34%</td>
                   <td id="totalEstPayout2">25%</td>
                 </tr>
                 <tr>
                   <td><i class="fas fa-store text-warning me-2"></i>&nbspSKU Per Outlet</td>
-                  <td>35,435</td>
+                  <td>16</td>
                   <td>345</td>
                   <td class="text-success fw-bold">57%</td>
                   <td id="totalEstPayout3">65%</td>
@@ -969,17 +975,17 @@
               <tbody>
                 <tr>
                   <td><input type="number" class="form-control" placeholder=" Enter Actuals"></td>
-                  <td class="text-primary fw-bold">45%</td>
+                  <td class="text-primary fw-bold">0</td>
                   <td id="totalEstPayout4">60%</td>
                 </tr>
                 <tr>
                   <td><input type="number" class="form-control" placeholder=" Enter Actuals"></td>
-                  <td class="text-primary fw-bold">34%</td>
+                  <td class="text-primary fw-bold">0</td>
                   <td id="totalEstPayout5">20%</td>
                 </tr>
                 <tr>
                   <td><input type="number" class="form-control" placeholder=" Enter Actuals"></td>
-                  <td class="text-primary fw-bold">57%</td>
+                  <td class="text-primary fw-bold">0</td>
                   <td id="totalEstPayout6">65%</td>
                 </tr>
               </tbody>
@@ -1286,6 +1292,65 @@
 
 
 
+
+
+  /* Function to calculate achievement in both Pride and UB */
+ 
+  // Function to calculate achievement
+  function calculateAchievement(tableId) {
+    // Get the main and secondary table by IDs
+    const mainTable = document.querySelector(`#${tableId.main}`);
+    const secondaryTable = document.querySelector(`#${tableId.secondary}`);
+
+    if (!mainTable || !secondaryTable) return;
+
+    // Get all rows in both tables
+    const mainTableRows = mainTable.querySelectorAll('tbody tr');
+    const secondaryTableRows = secondaryTable.querySelectorAll('tbody tr');
+
+    // Loop through the rows of the secondary table
+    secondaryTableRows.forEach((row, index) => {
+      // Get the user-entered actual value
+      const actualInput = row.querySelector('input[type="number"]').value;
+
+      if (actualInput) {
+        // Get the corresponding target value from the main table
+        const targetCell = mainTableRows[index]?.cells[1];
+        if (!targetCell) return;
+
+        const target = parseFloat(targetCell.textContent.replace(/,/g, ''));
+        
+        // Calculate the achievement
+        const achievement = (parseFloat(actualInput) / target) * 100;
+
+        // Update the Achievement column in the secondary table
+        const achievementCell = row.cells[1];
+        achievementCell.textContent = `${achievement.toFixed(2)}%`;
+
+        // Optionally, add class for styling
+        achievementCell.classList.add('text-primary', 'fw-bold');
+      }
+    });
+  }
+
+  // Add event listeners to both table groups
+  function setupEventListeners(tableId) {
+    const secondaryTable = document.querySelector(`#${tableId.secondary}`);
+    if (!secondaryTable) return;
+
+    // Add input listener for user entries
+    secondaryTable.querySelectorAll('input[type="number"]').forEach(input => {
+      input.addEventListener('input', () => calculateAchievement(tableId));
+    });
+  }
+
+  // Setup for both table groups
+  const tableGroups = [
+    { main: 'mainTable', secondary: 'secondaryTable' },
+    { main: 'mainTableUB', secondary: 'secondaryTableUB' },
+  ];
+
+  tableGroups.forEach(setupEventListeners);
 
 
 
