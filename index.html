@@ -10,27 +10,33 @@
   <!-- Font Awesome for Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <!-- Custom CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.10.1/lottie.min.js"></script>
+  
 </head>
 <style>
   /* General Styles */
   body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #ffffff;
+    background: linear-gradient(to bottom, #f0f2f5, #ffffff);
+    color: #333;
   }
 
   /* Header Styles */
   .colorful-header {
-    background: linear-gradient(90deg, #9d0132, #2575fc);
+    background: linear-gradient(90deg, #9d0132, #244494);
     color: #fff;
     position: sticky;
     top: 0;
     z-index: 1000;
   }
 
+    
+    
   .logo {
-    width: 60px;
-    height: 60px;
-    border-radius: 34px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
   }
 
   /* Colorful Tabs */
@@ -49,8 +55,10 @@
   }
 
   .colorful-tabs .nav-link:hover {
-    color: #0d6efd;
+    color: #007bff;
   }
+
+  
 
   .colorful-tabs .nav-link.active {
     color: #6c757d;
@@ -92,6 +100,55 @@
   .text-danger {
     color: #dc3545 !important;
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+/* Table Styling */
+.table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 15px;
+  }
+
+  .table th {
+    background: linear-gradient(90deg, #244494, #244494);
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+  }
+
+  .table td {
+    padding: 8px;
+    border: 1px solid #c4c4c4;
+  }
+
+  .table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+  .table tbody tr:hover {
+    background-color: #d4daea;
+  }
+
+  /* Footer Total Row */
+  tfoot td {
+    font-weight: bold;
+    background-color: #f0f2f5;
+  }
+ 
+
 
 
   .table-container {
@@ -167,7 +224,7 @@
   .circular-progress .inner-circle {
     width: 80%;
     height: 80%;
-    background-color: white;
+    background: linear-gradient(135deg, #f8e9ef, #e4ebf9);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -182,12 +239,41 @@
     color: #333;
   }
 
+  .legend {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Align vertically */
+}
+
+.legend span {
+  font-size: 0.9rem; /* Adjust font size as needed */
+}
+
+.legend .fa-bullseye,
+.legend .fa-user-check,
+.legend .fa-running {
+  font-size: 1.2rem; /* Icon size adjustment */
+}
+
+.d-flex.gap-4 {
+  gap: 1.5rem; /* Adjust space between chart and legend */
+}
+
   /* Optional: Styling for the progress bars' container */
   .progress-bars-container {
     margin-top: 20px;
+    padding-bottom: 30px;
   }
 
 
+  
+/* Add tile background for each progress bar container */
+.progress-bar-container {
+  background: linear-gradient(135deg, #f8e9ef, #e4ebf9);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
 
   /* Headings for each progress bar */
   .progress-bars-container h6 {
@@ -238,6 +324,50 @@
       max-width: 100%;
       /* Full width */
     }
+      
+      tbody, td, tfoot, th, thead, tr {
+	white-space: nowrap;
+}
+    .progress-bars-container .d-flex.justify-content-center.gap-5 {
+	flex-direction: column;
+}
+    #messages .d-flex.justify-content-between.align-items-center.mb-3,
+    #groups .d-flex.justify-content-between.align-items-center.mb-3{
+	flex-direction: column;
+	align-items: last baseline !important;
+}
+      .text-end {
+	text-align: left !important;
+}
+      #tabs {
+	overflow: scroll;
+	white-space: nowrap;
+	flex-wrap: nowrap;
+}
+      .colorful-header .container {
+	flex-direction: column !important;
+	align-items: start !important;
+}
+      .colorful-header .text-light.small {
+	padding-left: 45px;
+}
+#notifications .row {
+	display: flex !important;
+	/*flex-wrap: nowrap;*/
+	/* gap: 200px; */
+	overflow: scroll;
+	/*border-top: 1px solid #ccc;*/
+	padding-top: 12px;
+}
+#notifications .row .col-md-6 {
+	width: auto !important;   
+	/*max-width: fit-content;*/
+	/*border-left: 1px solid #ccc;*/
+}
+      #notifications .row .col-md-6 h5 {
+ /* border-bottom: 1px solid #ccc;*/
+  padding-bottom: 15px;
+}
   }
 
 
@@ -269,6 +399,20 @@
 
 
   
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
 
 
 
@@ -436,6 +580,7 @@
         <!-- Line Below the Dropdown and State Achievement -->
         <hr class="my-3">
 
+          <div class="table-responsive">
         <table class="table colorful-table">
           <thead>
             <tr>
@@ -529,6 +674,7 @@
 
           </tbody>
         </table>
+              </div>
       </div>
 
 
@@ -604,7 +750,7 @@
 
         <!-- Line Below the Dropdown and State Achievement -->
         <hr class="my-3">
-
+<div class="table-responsive">
         <table class="table colorful-table">
           <thead>
             <tr>
@@ -699,6 +845,7 @@
 
           </tbody>
         </table>
+          </div>
       </div>
 
 
@@ -742,16 +889,86 @@
 
       <!-- Tab Content Matrix Qualifier (Pride) -->
       <div class="tab-pane fade" id="notifications" role="tabpanel" aria-labelledby="notifications-tab">
+
+        <div class="progress-bars-container mt-4">
+          <h5 class="text-center mb-3">Progress Overview</h5>
+          <div class="d-flex justify-content-center gap-5">
+            <!-- Outlets Progress Bar with Legend -->
+            <div class="d-flex align-items-center gap-4 progress-bar-container">
+              <!-- Circular Progress -->
+              <div class="text-center">
+                <h6>Outlets</h6>
+                <div class="circular-progress position-relative" id="outletsProgress">
+                  <div class="inner-circle">
+                    <span id="outletsPercentage">75%</span> <!-- Percentage text -->
+                  </div>
+                </div>
+              </div>
+              <!-- Legend -->
+              <div class="legend">
+                <div class="d-flex align-items-center mb-2">
+                  <i class="fas fa-bullseye text-danger me-2"></i>
+                  <span>Target: <b>230</b></span>
+                </div>
+                <div class="d-flex align-items-center mb-2">
+                  <i class="fas fa-user-check text-warning me-2"></i>
+                  <span>Achieved: <b>98 (42.6%)</b></span>
+                </div>
+                <div class="d-flex align-items-center">
+                  <i class="fas fa-running text-success me-2"></i>
+                  <span>To Do: <b>132</b></span>
+                </div>
+              </div>
+            </div>
+        
+            <!-- Visits Progress Bar with Legend -->
+            <div class="d-flex align-items-center gap-4 progress-bar-container">
+              <!-- Circular Progress -->
+              <div class="text-center">
+                <h6>Visits</h6>
+                <div class="circular-progress position-relative" id="visitsProgress">
+                  <div class="inner-circle">
+                    <span id="visitsPercentage">100%</span> <!-- Percentage text -->
+                  </div>
+                </div>
+              </div>
+              <!-- Legend -->
+              <div class="legend">
+                <div class="d-flex align-items-center mb-2">
+                  <i class="fas fa-bullseye text-danger me-2"></i>
+                  <span>Target: <b>150</b></span>
+                </div>
+                <div class="d-flex align-items-center mb-2">
+                  <i class="fas fa-user-check text-warning me-2"></i>
+                  <span>Achieved: <b>80 (53.3%)</b></span>
+                </div>
+                <div class="d-flex align-items-center">
+                  <i class="fas fa-running text-success me-2"></i>
+                  <span>To Do: <b>70</b></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        
+        
+        
+
+
+        
         <div class="row">
           <div class="col-md-6">
+            <h5 class="text-center mb-3" style="font-size: 18px;font-weight: bold;color: #007bff;">Actuals</h5>
+              <div class="table-responsive">
             <table class="table colorful-table" id="mainTable">
               <thead>
                 <tr>
                   <th>Target Type</th>
-                  <th>Targets</th>
-                  <th>Actuals</th>
-                  <th>Achievement</th>
-                  <th>Est.Payout</th>
+                  <th>Target</th>
+                  <th>Actual</th>
+                  <th>% Ach</th>
+                  <th>Est.Pay</th>
                 </tr>
               </thead>
               <tbody>
@@ -784,30 +1001,37 @@
                 </tr>
               </tfoot>
             </table>
+              </div>
           </div>
 
           <!-- Secondary Table -->
           <div class="col-md-6">
+            <h5 class="text-center mb-3" style="font-size: 18px;font-weight: bold;color: #007bff;">Estimated</h5>
+              <div class="table-responsive">
             <table class="table colorful-table" id="secondaryTable">
               <thead>
                 <tr>
-                  <th>Your MTD Est</th>
-                  <th>Achievement</th>
-                  <th>Est.Payout</th>
+                  <th>Type</th>
+                  <th>MTD Est</th>
+                  <th>% Ach</th>
+                  <th>Est.Pay</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
+                  <td><i class="fas fa-shopping-cart text-success me-2"></i>&nbspVol</td>
                   <td><input type="number" class="form-control" placeholder=" Enter Actuals"></td>
                   <td class="text-primary fw-bold">0</td>
-                  <td>1,234</td>
+                  <td>1,235</td>
                 </tr>
                 <tr>
+                  <td><i class="fas fa-snowflake text-primary me-2"></i>&nbspCooler</td>
                   <td><input type="number" class="form-control" placeholder=" Enter Actuals"></td>
                   <td class="text-primary fw-bold">0</td>
                   <td>680</td>
                 </tr>
                 <tr>
+                  <td><i class="fas fa-store text-warning me-2"></i>&nbspSKU/Outlet</td>
                   <td><input type="number" class="form-control" placeholder=" Enter Actuals"></td>
                   <td class="text-primary fw-bold">0</td>
                   <td>1,089</td>
@@ -815,39 +1039,17 @@
               </tbody>
               <tfoot>
                 <tr>
-                  <td colspan="2" class="text-end fw-bold">Est.Payout:</td>
+                  <td colspan="3" class="text-end fw-bold">Est.Payout:</td>
                   <td id="secondaryTableTotal" class="fw-bold total-secondary">0</td>
                 </tr>
               </tfoot>
             </table>
+              </div>
 
           </div>
         </div>
 
-        <div class="progress-bars-container mt-4">
-          <h5 class="text-center mb-3">Progress Overview</h5>
-          <div class="d-flex justify-content-center gap-5">
-            <!-- Outlets Progress Bar -->
-            <div class="text-center">
-              <h6>Outlets</h6>
-              <div class="circular-progress" id="outletsProgress">
-                <div class="inner-circle">
-                  <span id="outletsPercentage">0%</span> <!-- Percentage text -->
-                </div>
-              </div>
-            </div>
-
-            <!-- Visits Progress Bar -->
-            <div class="text-center">
-              <h6>Visits</h6>
-              <div class="circular-progress" id="visitsProgress">
-                <div class="inner-circle">
-                  <span id="visitsPercentage">0%</span> <!-- Percentage text -->
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        
 
       </div>
 
@@ -898,16 +1100,83 @@
 
       <!-- Tab Content Matrix Qualifier (UB) -->
       <div class="tab-pane fade" id="mentions" role="tabpanel" aria-labelledby="mentions-tab">
+
+
+        <div class="progress-bars-container mt-4">
+          <h5 class="text-center mb-3">Progress Overview</h5>
+          <div class="d-flex justify-content-center gap-5">
+            <!-- Outlets Progress Bar with Legend -->
+            <div class="d-flex align-items-center gap-4 progress-bar-container">
+              <!-- Circular Progress -->
+              <div class="text-center">
+                <h6>Outlets</h6>
+                <div class="circular-progress position-relative" id="outletsProgressUB">
+                  <div class="inner-circle">
+                    <span id="outletsPercentageUB">75%</span> <!-- Percentage text -->
+                  </div>
+                </div>
+              </div>
+              <!-- Outlets Legend -->
+              <div class="legend">
+                <div class="d-flex align-items-center mb-2">
+                  <i class="fas fa-bullseye text-danger me-2"></i>
+                  <span>Target: <b>230</b></span>
+                </div>
+                <div class="d-flex align-items-center mb-2">
+                  <i class="fas fa-user-check text-warning me-2"></i>
+                  <span>Achieved: <b>98 (42.6%)</b></span>
+                </div>
+                <div class="d-flex align-items-center">
+                  <i class="fas fa-running text-success me-2"></i>
+                  <span>To Do: <b>132</b></span>
+                </div>
+              </div>
+            </div>
+        
+            <!-- Visits Progress Bar with Legend -->
+            <div class="d-flex align-items-center gap-4 progress-bar-container">
+              <!-- Circular Progress -->
+              <div class="text-center">
+                <h6>Visits</h6>
+                <div class="circular-progress position-relative" id="visitsProgressUB">
+                  <div class="inner-circle">
+                    <span id="visitsPercentageUB">100%</span> <!-- Percentage text -->
+                  </div>
+                </div>
+              </div>
+              <!-- Visits Legend -->
+              <div class="legend">
+                <div class="d-flex align-items-center mb-2">
+                  <i class="fas fa-bullseye text-danger me-2"></i>
+                  <span>Target: <b>150</b></span>
+                </div>
+                <div class="d-flex align-items-center mb-2">
+                  <i class="fas fa-user-check text-warning me-2"></i>
+                  <span>Achieved: <b>80 (53.3%)</b></span>
+                </div>
+                <div class="d-flex align-items-center">
+                  <i class="fas fa-running text-success me-2"></i>
+                  <span>To Do: <b>70</b></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        
+
         <div class="row">
           <div class="col-md-6">
+            <h5 class="text-center mb-3" style="font-size: 18px;font-weight: bold;color: #007bff;">Actuals</h5>
+              <div class="table-responsive">
             <table class="table colorful-table" id="mainTableUB">
               <thead>
                 <tr>
                   <th>Target Type</th>
-                  <th>Targets</th>
-                  <th>Actuals</th>
-                  <th>Achievement</th>
-                  <th>Est.Payout%</th>
+                  <th>Target</th>
+                  <th>Actual</th>
+                  <th>% Ach</th>
+                  <th>Est.Pay</th>
                 </tr>
               </thead>
               <tbody>
@@ -960,30 +1229,37 @@
 
               </tfoot>
             </table>
+              </div>
           </div>
 
           <!-- Secondary Table -->
           <div class="col-md-6">
+            <h5 class="text-center mb-3" style="font-size: 18px;font-weight: bold;color: #007bff;">Estimated</h5>
+              <div class="table-responsive">
             <table class="table colorful-table" id="secondaryTableUB">
               <thead>
                 <tr>
-                  <th>Your MTD Est</th>
-                  <th>Achievement</th>
-                  <th>SIP Payout Parameter</th>
+                  <th>Type</th>
+                  <th>MTD Est</th>
+                  <th>%Ach</th>
+                  <th>SIP Pay</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
+                  <td><i class="fas fa-shopping-cart text-success me-2"></i>&nbspVol</td>
                   <td><input type="number" class="form-control" placeholder=" Enter Actuals"></td>
                   <td class="text-primary fw-bold">0</td>
                   <td id="totalEstPayout4">60%</td>
                 </tr>
                 <tr>
+                  <td><i class="fas fa-snowflake text-primary me-2"></i>&nbspCooler</td>
                   <td><input type="number" class="form-control" placeholder=" Enter Actuals"></td>
                   <td class="text-primary fw-bold">0</td>
                   <td id="totalEstPayout5">20%</td>
                 </tr>
                 <tr>
+                  <td><i class="fas fa-store text-warning me-2"></i>&nbspSKU/Outlet</td>
                   <td><input type="number" class="form-control" placeholder=" Enter Actuals"></td>
                   <td class="text-primary fw-bold">0</td>
                   <td id="totalEstPayout6">65%</td>
@@ -991,43 +1267,22 @@
               </tbody>
               <tfoot>
                 <tr>
-                  <td colspan="2" class="text-end fw-bold">Est.Payout(%):</td>
+                  <td colspan="3" class="text-end fw-bold">Est.Payout(%):</td>
                   <td id="secondaryTableTotalUB" class="fw-bold total-secondary">0</td>
                 </tr>
                 <tr>
-                  <td colspan="2" class="text-end fw-bold">Est.Payout(₹):</td>
+                  <td colspan="3" class="text-end fw-bold">Est.Payout(₹):</td>
                   <td id="secondaryTableTotalUB1" class="fw-bold total-secondary">0</td>
                 </tr>
               </tfoot>
             </table>
+              </div>
 
           </div>
         </div>
 
-        <div class="progress-bars-container mt-4">
-          <h5 class="text-center mb-3">Progress Overview</h5>
-          <div class="d-flex justify-content-center gap-5">
-            <!-- Outlets Progress Bar -->
-            <div class="text-center">
-              <h6>Outlets</h6>
-              <div class="circular-progress" id="outletsProgressUB">
-                <div class="inner-circle">
-                  <span id="outletsPercentageUB">0%</span> <!-- Percentage text -->
-                </div>
-              </div>
-            </div>
-
-            <!-- Visits Progress Bar -->
-            <div class="text-center">
-              <h6>Visits</h6>
-              <div class="circular-progress" id="visitsProgressUB">
-                <div class="inner-circle">
-                  <span id="visitsPercentageUB">0%</span> <!-- Percentage text -->
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        
+        
 
       </div>
 
@@ -1296,8 +1551,8 @@
 
   /* Function to calculate achievement in both Pride and UB */
  
-  // Function to calculate achievement
-  function calculateAchievement(tableId) {
+   // Function to calculate achievement
+   function calculateAchievement(tableId) {
     // Get the main and secondary table by IDs
     const mainTable = document.querySelector(`#${tableId.main}`);
     const secondaryTable = document.querySelector(`#${tableId.secondary}`);
@@ -1313,23 +1568,37 @@
       // Get the user-entered actual value
       const actualInput = row.querySelector('input[type="number"]').value;
 
-      if (actualInput) {
-        // Get the corresponding target value from the main table
-        const targetCell = mainTableRows[index]?.cells[1];
-        if (!targetCell) return;
+      // Get the Achievement cell in the secondary table
+      const achievementCell = row.cells[2];
 
-        const target = parseFloat(targetCell.textContent.replace(/,/g, ''));
-        
-        // Calculate the achievement
-        const achievement = (parseFloat(actualInput) / target) * 100;
-
-        // Update the Achievement column in the secondary table
-        const achievementCell = row.cells[1];
-        achievementCell.textContent = `${achievement.toFixed(2)}%`;
-
-        // Optionally, add class for styling
-        achievementCell.classList.add('text-primary', 'fw-bold');
+      // Check if input is empty or invalid
+      if (!actualInput || isNaN(actualInput)) {
+        achievementCell.textContent = `0%`; // Reset achievement to 0%
+        achievementCell.classList.remove('text-success', 'fw-bold'); // Remove styling if needed
+        return;
       }
+
+      // Get the corresponding target value from the main table
+      const targetCell = mainTableRows[index]?.cells[1];
+      if (!targetCell) return;
+
+      const target = parseFloat(targetCell.textContent.replace(/,/g, ''));
+
+      // Check if target is valid
+      if (isNaN(target) || target <= 0) {
+        achievementCell.textContent = `0%`; // Reset to 0% if target is invalid
+        achievementCell.classList.remove('text-success', 'fw-bold'); // Remove styling if needed
+        return;
+      }
+
+      // Calculate the achievement
+      const achievement = (parseFloat(actualInput) / target) * 100;
+
+      // Update the Achievement column in the secondary table
+      achievementCell.textContent = `${achievement.toFixed(2)}%`;
+
+      // Add class for styling
+      achievementCell.classList.add('text-primary', 'fw-bold');
     });
   }
 
